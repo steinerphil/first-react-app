@@ -1,6 +1,5 @@
 import './App.css';
 import Header from "./components/Header/Header";
-import responseCharacters from "./components/characters.json";
 import CharacterGallery from "./components/CharacterGallery";
 import {useState} from "react";
 
@@ -9,9 +8,17 @@ function App() {
     const [state, setState] = useState([])
     const [find, setFind] = useState("")
 
-    const handleButtonClick = () => {
-        setState(responseCharacters.results)
+    function fetchData() {
+        fetch("https://rickandmortyapi.com/api/character")
+            .then((response) => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw response;
+            })
+            .then((data) => setState(data.results))
     }
+
 
     const clearAll = () => {
         setState([])
@@ -30,9 +37,9 @@ function App() {
   return (
       <>
           <Header title = "Gallery"/>
-          <button onClick={handleButtonClick}>Load Characters</button>
+          <button onClick={fetchData}>Load Characters</button>
           <button onClick={clearAll}>clear</button>
-          <input type="text" onChange={search}/>
+          <input type="text" onInput={search}/>
           <CharacterGallery characters={print}/>
       </>
   );
