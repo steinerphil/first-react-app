@@ -6,7 +6,11 @@ function CharacterGallery({characters}) {
     return(
         <section className="body">
             {
-                characters.map(character => <Card key={character.id} character={character}/>)
+                characters.map((character) => {return <Card
+                    key={character.id}
+                    name={character.name}
+                    origin={character.origin.name}
+                    image={character.image}/>})
             }
         </section>
     )

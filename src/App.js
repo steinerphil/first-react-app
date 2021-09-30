@@ -5,7 +5,7 @@ import {useState} from "react";
 
 function App() {
 
-    const [state, setState] = useState([])
+    const [allCharacters, setAllCharacters] = useState([])
     const [find, setFind] = useState("")
 
     function fetchData() {
@@ -16,12 +16,12 @@ function App() {
                 }
                 throw response;
             })
-            .then((data) => setState(data.results))
+            .then((data) => setAllCharacters(data.results))
     }
 
 
     const clearAll = () => {
-        setState([])
+        setAllCharacters([])
     }
 
      const search = (action) => {
@@ -29,7 +29,7 @@ function App() {
          setFind(string)
      }
 
-     const print = state.filter((element) => {
+     const handleCharacters = allCharacters.filter((element) => {
              return element.name.toLowerCase().includes(find.toLowerCase())
          })
 
@@ -40,7 +40,7 @@ function App() {
           <button onClick={fetchData}>Load Characters</button>
           <button onClick={clearAll}>clear</button>
           <input type="text" onInput={search}/>
-          <CharacterGallery characters={print}/>
+          <CharacterGallery characters={handleCharacters}/>
       </>
   );
 }
