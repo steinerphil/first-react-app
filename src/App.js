@@ -7,6 +7,7 @@ import {useState} from "react";
 function App() {
 
     const [state, setState] = useState([])
+    const [find, setFind] = useState("")
 
     const handleButtonClick = () => {
         setState(responseCharacters.results)
@@ -16,14 +17,23 @@ function App() {
         setState([])
     }
 
-    // const search = ()
+     const search = (action) => {
+         let string = action.target.value;
+         setFind(string)
+     }
+
+     const print = state.filter((element) => {
+             return element.name.toLowerCase().includes(find.toLowerCase())
+         })
+
 
   return (
       <>
           <Header title = "Gallery"/>
           <button onClick={handleButtonClick}>Load Characters</button>
           <button onClick={clearAll}>clear</button>
-          <CharacterGallery characters={state}/>
+          <input type="text" onChange={search}/>
+          <CharacterGallery characters={print}/>
       </>
   );
 }
