@@ -6,18 +6,23 @@ import {useState} from "react";
 
 function App() {
 
- //   const characters = responseCharacters.results;
-
     const [state, setState] = useState([])
 
     const handleButtonClick = () => {
         setState(responseCharacters.results)
     }
 
+    const clearAll = () => {
+        setState([])
+    }
+
+    // const search = ()
+
   return (
       <>
           <Header title = "Gallery"/>
           <button onClick={handleButtonClick}>Load Characters</button>
+          <button onClick={clearAll}>clear</button>
           <CharacterGallery characters={state}/>
       </>
   );

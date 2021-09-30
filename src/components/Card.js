@@ -5,6 +5,7 @@ function Card({character}) {
         <div className="card">
             <h2>{character.name}</h2>
             <p>{character.origin.name}</p>
+            <img src={character.image} className="img"/>
         </div>
     );
 }
