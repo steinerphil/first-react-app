@@ -6,14 +6,19 @@ import {useState} from "react";
 
 function App() {
 
-    const characters = responseCharacters.results;
+ //   const characters = responseCharacters.results;
 
-    useState()
+    const [state, setState] = useState([])
+
+    const handleButtonClick = () => {
+        setState(responseCharacters.results)
+    }
 
   return (
       <>
           <Header title = "Gallery"/>
-          <CharacterGallery characters={characters}/>
+          <button onClick={handleButtonClick}>Load Characters</button>
+          <CharacterGallery characters={state}/>
       </>
   );
 }
