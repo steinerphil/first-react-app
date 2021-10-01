@@ -5,3 +5,12 @@
 html, body{
     margin: 0;
 }
+
+.fields{
+    text-align: center;
+
+}
+
+button, input{
+    margin: 3px;
+}
