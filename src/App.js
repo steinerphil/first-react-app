@@ -8,40 +8,35 @@ function App() {
 
     const [allCharacters, setAllCharacters] = useState([])
     const [find, setFind] = useState("")
-    const [nextUrl, setNextUrl] = useState(null)
-    const [prevUrl, setPrevUrl] = useState(null)
+    const [info, setInfo] = useState(null)
+    const [page, setPage] = useState('https://rickandmortyapi.com/api/character')
 
 
     function setJsonData(data){
         setAllCharacters(data.results);
-        setPrevUrl(data.info.prev);
-        setNextUrl(data.info.next);
+        setInfo(data.info);
     }
 
     //initial fetch
     useEffect(() => {
-      fetchApiService('https://rickandmortyapi.com/api/character')
+      fetchApiService(page)
           .then(data => setJsonData(data))
          .catch(error => console.error(error))
-    }, []);
+    }, [page]);
 
     const next = () => {
-        if(nextUrl === null){
+        if(info.next === null){
             console.log("there is no next page")
         } else {
-            fetchApiService(`${nextUrl}`)
-                .then(data => setJsonData(data))
-                .catch(error => console.error(error))
+            setPage(`${info.next}`)
         }
     }
 
     const prev = () => {
-        if(prevUrl === null){
+        if(info.prev === null){
             console.log("there is no prev page")
         } else{
-            fetchApiService(`${prevUrl}`)
-                .then(data => setJsonData(data))
-                .catch(error => console.error(error))
+            setPage(`${info.prev}`)
         }
     }
 
