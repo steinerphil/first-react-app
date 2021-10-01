@@ -12,15 +12,12 @@ function App() {
     const [page, setPage] = useState('https://rickandmortyapi.com/api/character')
 
 
-    function setJsonData(data){
-        setAllCharacters(data.results);
-        setInfo(data.info);
-    }
-
-    //initial fetch
     useEffect(() => {
       fetchApiService(page)
-          .then(data => setJsonData(data))
+          .then(data => {
+              setAllCharacters(data.results);
+              setInfo(data.info);
+          })
          .catch(error => console.error(error))
     }, [page]);
 
