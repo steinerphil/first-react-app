@@ -8,7 +8,7 @@ function App() {
 
     const [allCharacters, setAllCharacters] = useState([])
     const [find, setFind] = useState("")
-    const [info, setInfo] = useState(null)
+    const [info, setInfo] = useState('')
     const [page, setPage] = useState('https://rickandmortyapi.com/api/character')
 
 
@@ -25,19 +25,11 @@ function App() {
     }, [page]);
 
     const next = () => {
-        if(info.next === null){
-            console.log("there is no next page")
-        } else {
-            setPage(`${info.next}`)
-        }
+        setPage(`${info.next}`)
     }
 
     const prev = () => {
-        if(info.prev === null){
-            console.log("there is no prev page")
-        } else{
-            setPage(`${info.prev}`)
-        }
+        setPage(`${info.prev}`)
     }
 
 
@@ -55,8 +47,8 @@ function App() {
       <>
           <Header title = "Gallery"/>
           <div className="fields">
-              <button onClick={prev}>previous</button>
-              <button onClick={next}>next</button>
+              <button onClick={prev} disabled={info.prev === null}>previous</button>
+              <button onClick={next} disabled={info.next === null}>next</button>
               <input type="text" onInput={search}/>
           </div>
 
