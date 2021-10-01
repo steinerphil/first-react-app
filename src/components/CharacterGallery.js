@@ -10,7 +10,9 @@ function CharacterGallery({characters}) {
                     key={character.id}
                     name={character.name}
                     origin={character.origin.name}
-                    image={character.image}/>})
+                    image={character.image}
+                    gender={character.gender}
+                />})
             }
         </section>
     )

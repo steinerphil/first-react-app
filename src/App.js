@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 import CharacterGallery from "./components/CharacterGallery";
 import {useState, useEffect} from "react";
 import fetchApiService from "./service/fetchApiService";
+import styled from "styled-components/macro";
 
 function App() {
 
@@ -44,8 +45,8 @@ function App() {
       <>
           <Header title = "Gallery"/>
           <div className="fields">
-              <button onClick={prev} disabled={info.prev === null}>previous</button>
-              <button onClick={next} disabled={info.next === null}>next</button>
+              <Fields onClick={prev} disabled={info.prev === null}>previous</Fields>
+              <Fields onClick={next} disabled={info.next === null}>next</Fields>
               <input type="text" onInput={search}/>
           </div>
 
@@ -56,27 +57,6 @@ function App() {
 
 export default App;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let state = {
-//     characters: []
-// }
-//
-// let apiData = fetch("https://rickandmortyapi.com/api/character/1,2")
-//     .then(response => response.json())
-//     .then(data => {data.result})
-//     .then(result => {this.state({characters: result})})
+const Fields = styled.button `
+    margin: 3px;
+`
